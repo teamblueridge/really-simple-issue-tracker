@@ -1,7 +1,6 @@
 <?php
 
 class ReallySimpleIssueTracker_IssueType {
-
     private $id;
     private $name;
     private $description;
@@ -50,5 +49,17 @@ class ReallySimpleIssueTracker_IssueType {
 
     public function getName() {
         return $this->name;
+    }
+
+
+    /**
+     * @param $id
+     * @return bool|ReallySimpleIssueTracker_Type
+     */
+    public function getIssueTypeById($id) {
+        if($id == $this->id)
+            return $this;
+        else
+            return false;
     }
 }
