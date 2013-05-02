@@ -10,7 +10,7 @@ function issuetable() {
 	while ( have_posts() ) : the_post();
 	$post = get_the_ID();
     echo '<tr><td>';
-    the_date();
+    echo get_the_date();
     $issue = get_post_meta($post, 'issue_type', true);
     $issue_types = ReallySimpleIssueTracker_IssueType::getDefaultIssueTypes();
 	if($issue) {

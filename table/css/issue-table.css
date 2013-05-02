@@ -1,5 +1,4 @@
-.issue-table th, td {text-align:center !important}
-.issue-table-content {text-align: left !important}
+.issue-table th, td {text-align:left !important}
 .issue-table .open {color:#ff0000;}
 .issue-table .closed {color:#002BB8;}
 .issue-table .stopped {color:#222222;}
