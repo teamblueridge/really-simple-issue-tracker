@@ -6,7 +6,6 @@ class ReallySimpleIssueTracker_ListWidget extends WP_Widget {
     public function __construct() {
         $this->plugin_url = plugin_dir_url(__FILE__);
         parent::__construct(false, __('Issue list', ReallySimpleIssueTracker::HANDLE), array('description'=> __('Displays a customizable list of registered issues.', ReallySimpleIssueTracker::HANDLE)));
-        wp_enqueue_style('really-simple-issue-tracker-widget-style', plugin_dir_url(__FILE__).'css/widget-issue-list.css');
     }
 
     function update ($new_instance, $old_instance) {
@@ -118,57 +117,8 @@ class ReallySimpleIssueTracker_ListWidget extends WP_Widget {
             while (have_posts()) : the_post();
                 $post = get_post(get_the_ID()); ?>
                 <li>
-                    <p>
-                        <a href="<?php echo get_post_permalink($post->ID) ?>">
-                            <strong><?php echo $post->post_title ?></strong>
-                        </a>
-                    </p>
-                    <p>
-                        <?php
-                        $assignee = get_user_meta(get_post_meta($post->ID,'assigned_to', true), 'nickname', true);
-                        _e('Assigned to', ReallySimpleIssueTracker::HANDLE);
-                        if($assignee) {
-                            echo ': <strong>'.$assignee.'</strong>';
-                        }
-                        else {
-                            echo ': <strong><em>'.__('Unassigned',ReallySimpleIssueTracker::HANDLE).'</em></strong>';
-                        }
-                        ?>
-                    </p>
-                    <p>
-                        <?php
-                        $original_estimate = get_post_meta($post->ID,'original_estimate', true);
-                        if(get_post_meta($post->ID,'original_estimate', true)) {
-                            _e('Original estimate', ReallySimpleIssueTracker::HANDLE);
-                            echo ': <strong>'.$original_estimate.'</strong>';
-                        }
-                        ?>
-                    </p>
-                    <p>
-                        <?php
-                        $time_spent = get_post_meta($post->ID,'time_spent', true);
-                        if($time_spent) {
-                            _e('Time spent', ReallySimpleIssueTracker::HANDLE);
-                            echo ': <strong>'.$time_spent.'</strong>';
-                        }
-                        ?>
-                    </p>
-                    <p>
-                        <?php
-                        $status = get_post_meta($post->ID,'issue_status', true);
-                        $status_types = ReallySimpleIssueTracker_Status::getDefaultStatusTypes();
-                        if($status) {
-                            $status_type = object;
-                            /* @var $type ReallySimpleIssueTracker_Status */
-                            foreach($status_types as $type) {
-                                if($type->getStatusTypeById($status))
-                                    $status_type = $type;
-                            }
-                            _e('Status', ReallySimpleIssueTracker::HANDLE);
-                            echo ': <strong class="'.$status_type->getId().'">'.$status_type->getName().'</strong>';
-                        }
-                        ?>
-                    </p>
+						<a href="<?php echo get_post_permalink($post->ID) ?>">
+                            <?php echo $post->post_title ?></a>    
                 </li>
                 <?php endwhile; ?>
         </ul>
