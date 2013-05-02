@@ -1,3 +1,7 @@
-.content {max-width: 250px}
-
-.open {color:#002BB8;}
+.issue-table th, td {text-align:center !important}
+.issue-table-content {text-align: left !important}
+.issue-table .open {color:#ff0000;}
+.issue-table .closed {color:#002BB8;}
+.issue-table .stopped {color:#222222;}
+.issue-table .fixed {color:#009900;}
+.issue-table .in_progress {color:#ff9900;}
