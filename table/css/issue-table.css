@@ -1,6 +1,9 @@
-.issue-table th, td {text-align:left !important}
-.issue-table .open {color:#ff0000;}
-.issue-table .closed {color:#002BB8;}
-.issue-table .stopped {color:#222222;}
-.issue-table .fixed {color:#009900;}
-.issue-table .in_progress {color:#ff9900;}
+/* Reduce whitespace between cells, adjust if needed
+#issue-table table, #issue-table p {margin: 0em 0 !important}
+#issue-table th, #issue-table td {padding: .3em}
+ */
+.open {color:#ff0000;}
+.closed {color:#002BB8;}
+.stopped {color:#222222;}
+.fixed {color:#009900;}
+.in_progress {color:#ff9900;}

@@ -3,7 +3,7 @@ wp_enqueue_style('really-simple-issue-tracker-table-style', plugin_dir_url(__FIL
 function issuetable() { 
 	$querytype = 'post_type="issue"';
 	global $more;
-	echo '<table class="issue-table"><thead><tr><th>Date</th><th>Type</th><th>Status</th><th>Title</th><th>Content</th><th>Project</th><th>For</th><th>Priority</th><th>Spent</th><th>Assigned</th></tr></thead>';
+	echo '<table id="issue-table"><thead><tr><th>Date</th><th>Type</th><th>Status</th><th>Title</th><th>Content</th><th>Project</th><th>For</th><th>Priority</th><th>Spent</th><th>Assigned</th></tr></thead>';
 	echo '<tbody>';
 	query_posts($querytype);
 
@@ -58,3 +58,4 @@ function issuetable() {
 	wp_reset_query(); 
 }
 add_shortcode('really-simple-issue-tracker', 'issuetable');
+);
