@@ -4,9 +4,8 @@ function issue_table_style() {
 }
 add_action('wp_enqueue_scripts', 'issue_table_style');
 
-function issuetable() { 
+function issue_table() { 
 	$querytype = 'post_type="issue"';
-	global $more;
 	echo '<table id="issue-table"><thead><tr><th>Date</th><th>Type</th><th>Status</th><th>Title</th><th>Project</th><th>For</th><th>Priority</th><th>Spent</th><th>Assigned</th></tr></thead>';
 	echo '<tbody>';
 	query_posts($querytype);
@@ -36,9 +35,7 @@ function issuetable() {
             	echo '<td class="'.$status_type->getId().'">'.$status_type->getName().'';
             }
     echo '</td><td>';
-?>
-    <a href=<?php the_permalink() ?>><?php the_title() ?></a>
-<?php
+    echo '<a href=the_permalink()>the_title()</a>';
     echo '</td><td>';
     the_taxonomies(array('template' => '<div style="display:none;">%s</div> %l')); 
 	echo '</td><td>';
@@ -60,5 +57,5 @@ function issuetable() {
 	echo '</tbody></table>';
 	wp_reset_query(); 
 }
-add_shortcode('really-simple-issue-tracker', 'issuetable');
+add_shortcode('really-simple-issue-tracker', 'issue_table');
 ?>
