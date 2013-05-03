@@ -35,7 +35,9 @@ function issue_table() {
             	echo '<td class="'.$status_type->getId().'">'.$status_type->getName().'';
             }
     echo '</td><td>';
-    echo '<a href=the_permalink()>the_title()</a>';
+?>
+    <a href=<?php the_permalink() ?>><?php the_title() ?></a>
+<?php
     echo '</td><td>';
     the_taxonomies(array('template' => '<div style="display:none;">%s</div> %l')); 
 	echo '</td><td>';
