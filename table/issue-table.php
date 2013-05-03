@@ -1,9 +1,13 @@
 <?php
-wp_enqueue_style('really-simple-issue-tracker-table-style', plugin_dir_url(__FILE__).'css/issue-table.css');
+function issue_table_style() {
+	wp_enqueue_style('really-simple-issue-tracker-table-style', plugin_dir_url(__FILE__).'css/issue-table.css');
+}
+add_action('wp_enqueue_scripts', 'issue_table_style');
+
 function issuetable() { 
 	$querytype = 'post_type="issue"';
 	global $more;
-	echo '<table id="issue-table"><thead><tr><th>Date</th><th>Type</th><th>Status</th><th>Title</th><th>Content</th><th>Project</th><th>For</th><th>Priority</th><th>Spent</th><th>Assigned</th></tr></thead>';
+	echo '<table id="issue-table"><thead><tr><th>Date</th><th>Type</th><th>Status</th><th>Title</th><th>Project</th><th>For</th><th>Priority</th><th>Spent</th><th>Assigned</th></tr></thead>';
 	echo '<tbody>';
 	query_posts($querytype);
 
@@ -32,16 +36,15 @@ function issuetable() {
             	echo '<td class="'.$status_type->getId().'">'.$status_type->getName().'';
             }
     echo '</td><td>';
-    the_title();
-    echo '</td><td class="issue-table-content">';
-    $more = 0;
-    the_content("Read More...");
+?>
+    <a href=<?php the_permalink() ?>><?php the_title() ?></a>
+<?php
     echo '</td><td>';
     the_taxonomies(array('template' => '<div style="display:none;">%s</div> %l')); 
 	echo '</td><td>';
     $assigned = get_user_meta(get_post_meta($post, 'assigned_to', true), 'nickname', true);
     	if($assigned) {echo $assigned;}
-    	else {echo ''.__('Unassigned',ReallySimpleIssueTracker::HANDLE).'';}
+    	else {echo __('Unassigned',ReallySimpleIssueTracker::HANDLE);}
     echo '</td><td>';
     $priority = get_post_meta($post, 'priority', true);
     	if($priority) {echo $priority;}
@@ -58,4 +61,4 @@ function issuetable() {
 	wp_reset_query(); 
 }
 add_shortcode('really-simple-issue-tracker', 'issuetable');
-);
+?>
