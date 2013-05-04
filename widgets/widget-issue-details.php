@@ -68,17 +68,16 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
          */
 	extract($args);
 
+	if(is_singular('issue') ):
+
 	echo $before_widget;
 
-	?>
-	
-    <?php if(strlen($instance['title']) > 0 && is_singular('issue') ): ?>
+	if(strlen($instance['title']) > 0): ?>
         <div class="widget-title"><?php echo $instance['title'] ?></div>
-        <?php endif; ?>
+    <?php endif; ?>
 
 	<?php $post = get_the_ID(); ?>
 
-	<?php if(is_singular('issue') ): ?>
 	<ul>
 	
 	<?php if($instance['status'] == 'on'):
@@ -92,9 +91,9 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
     			}
             	echo '<li>Status: '.$status_type->getName().'</li>';
             }
-	endif; ?>
+	endif;
 	
-	<?php if($instance['type'] == 'on'):
+	if($instance['type'] == 'on'):
 	$issue = get_post_meta($post, 'issue_type', true);
     $issue_types = ReallySimpleIssueTracker_IssueType::getDefaultIssueTypes();
 	if($issue) {
@@ -105,29 +104,29 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
     			}
             	echo '<li>Type: '.$issue_type->getName().'</li>';
             }
-	endif; ?>
+	endif;
 	
-	<?php if($instance['priority'] == 'on'):
+	if($instance['priority'] == 'on'):
 	$priority = get_post_meta($post, 'priority', true);
     if($priority) {echo '<li>Priority: '.$priority.'</li>';}
-	endif; ?>
+	endif;
 	
-	<?php if($instance['spent'] == 'on'):
+	if($instance['spent'] == 'on'):
 	$time_spent = get_post_meta($post, 'time_spent', true);
     if($time_spent) {echo '<li>Time spent: '.$time_spent.'</li>';}
-	endif; ?>
+	endif;
 	
-	<?php if($instance['assigned'] == 'on'):
+	if($instance['assigned'] == 'on'):
 	$original_estimate = get_post_meta($post, 'original_estimate', true);
     if($original_estimate) {echo '<li>Time assigned: '.$original_estimate.'</li>';}
 	endif; ?>
 	
 	</ul>
-	<?php endif; ?>
 
 	<?php
 	echo $after_widget;
-	
+	endif;
+
 	}
 	
 }
