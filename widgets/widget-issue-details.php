@@ -21,7 +21,7 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
 
 	function form ($instance) {
         $defaults = array(
-            'title' => __('Issue details', ReallySimpleIssueTracker::HANDLE),
+            'title' => __('Issue Details', ReallySimpleIssueTracker::HANDLE),
             'type' => 'on',
             'status' => 'on',
             'priority' => 'on',
@@ -73,13 +73,12 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
 	?>
 	
     <?php if(strlen($instance['title']) > 0 && is_singular('issue') ): ?>
-        <h3 class="widget-title"><?php echo $instance['title'] ?></h3>
+        <div class="widget-title"><?php echo $instance['title'] ?></div>
         <?php endif; ?>
 
 	<?php $post = get_the_ID(); ?>
 
 	<?php if(is_singular('issue') ): ?>
-	<div class="widget-body widget-issue-details">
 	<ul>
 	
 	<?php if($instance['status'] == 'on'):

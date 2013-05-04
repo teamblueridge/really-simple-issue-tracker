@@ -109,9 +109,8 @@ class ReallySimpleIssueTracker_ListWidget extends WP_Widget {
         echo $before_widget;
         ?>
     <?php if(strlen($instance['title']) > 0): ?>
-        <h1><?php echo $instance['title'] ?></h1>
+        <div class="widget-title"><?php echo $instance['title'] ?></div>
         <?php endif; ?>
-    <div class="widget-body widget-issue-list">
     <ul>
         <?php query_posts($querystr);
         if (have_posts()) :
@@ -134,7 +133,6 @@ class ReallySimpleIssueTracker_ListWidget extends WP_Widget {
         wp_reset_query();
         ?>
 
-    </div>
     <?php
         echo $after_widget;
     }
