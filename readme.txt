@@ -67,12 +67,13 @@ Premium version is still under development. When it is ready I will provide you 
 
 == Screenshots ==
 
-1. Admin issue list view.
+1. Admin issue list.
 
-2. Admin issue editor view.
+2. Admin issue editor.
 
-3. Admin issue widget view.
+3. Admin issue list widget.
 
+4. Admin issue details widget.
 
 == Changelog ==
 

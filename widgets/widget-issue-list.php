@@ -5,7 +5,7 @@ class ReallySimpleIssueTracker_ListWidget extends WP_Widget {
 
     public function __construct() {
         $this->plugin_url = plugin_dir_url(__FILE__);
-        parent::__construct(false, __('Issue list', ReallySimpleIssueTracker::HANDLE), array('description'=> __('Displays a customizable list of registered issues.', ReallySimpleIssueTracker::HANDLE)));
+        parent::__construct(false, __('Issue List', ReallySimpleIssueTracker::HANDLE), array('description'=> __('Displays a customizable list of registered issues.', ReallySimpleIssueTracker::HANDLE)));
     }
 
     function update ($new_instance, $old_instance) {
@@ -20,13 +20,14 @@ class ReallySimpleIssueTracker_ListWidget extends WP_Widget {
 
     function form ($instance) {
         $defaults = array(
-            'title' => __('Issue list',ReallySimpleIssueTracker::HANDLE),
+            'title' => __('Issue list', ReallySimpleIssueTracker::HANDLE),
             'list_length' => 10,
             'assignee' => 0,
             'project' => 0,
             'status' => ''
         );
-        $instance = wp_parse_args( (array) $instance, $defaults ); ?>
+        $instance = wp_parse_args( (array) $instance, $defaults );
+?>
 
     <p>
         <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title') ?>:

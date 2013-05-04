@@ -11,6 +11,7 @@ require_once 'class-really-simple-issue-tracker.php';
 require_once 'class-issue-type.php';
 require_once 'class-status.php';
 require_once 'widgets/widget-issue-list.php';
+require_once 'widgets/widget-issue-details.php';
 require_once 'table/issue-table.php';
 require_once 'hooks.php';
 $tracker = new ReallySimpleIssueTracker();
