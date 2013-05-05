@@ -89,7 +89,7 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
                 if($type->getStatusTypeById($status))
             	$status_type = $type;
     			}
-            	echo '<li>Status: '.$status_type->getName().'</li>';
+            	echo '<li>Status: <strong>'.$status_type->getName().'</strong></li>';
             }
 	endif;
 	
@@ -102,23 +102,23 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
                 if($type->getIssueTypeById($issue))
             	$issue_type = $type;
     			}
-            	echo '<li>Type: '.$issue_type->getName().'</li>';
+            	echo '<li>Type: <strong>'.$issue_type->getName().'</strong></li>';
             }
 	endif;
 	
 	if($instance['priority'] == 'on'):
 	$priority = get_post_meta($post, 'priority', true);
-    if($priority) {echo '<li>Priority: '.$priority.'</li>';}
+    if($priority) {echo '<li>Priority: <strong>'.$priority.'</strong></li>';}
 	endif;
 	
 	if($instance['spent'] == 'on'):
 	$time_spent = get_post_meta($post, 'time_spent', true);
-    if($time_spent) {echo '<li>Time spent: '.$time_spent.'</li>';}
+    if($time_spent) {echo '<li>Time spent: <strong>'.$time_spent.'</strong></li>';}
 	endif;
 	
 	if($instance['assigned'] == 'on'):
 	$original_estimate = get_post_meta($post, 'original_estimate', true);
-    if($original_estimate) {echo '<li>Time assigned: '.$original_estimate.'</li>';}
+    if($original_estimate) {echo '<li>Time assigned: <strong>'.$original_estimate.'</strong></li>';}
 	endif; ?>
 	
 	</ul>
