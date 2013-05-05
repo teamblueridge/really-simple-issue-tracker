@@ -14,8 +14,7 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
 		$instance['type'] = $new_instance['type'];
 		$instance['status'] = $new_instance['status'];
 		$instance['priority'] = $new_instance['priority'];
-		$instance['spent'] = $new_instance['spent'];
-		$instance['assigned'] = $new_instance['assigned'];
+		$instance['time'] = $new_instance['time'];
 	return $instance;
     }
 
@@ -25,15 +24,13 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
             'type' => 'on',
             'status' => 'on',
             'priority' => 'on',
-            'spent' => '',
-            'assigned' => ''
+            'time' => ''
         );
         $instance = wp_parse_args( (array) $instance, $defaults ); 
 		$type = $instance['type'] ? 'checked="checked"' : '';
 		$status = $instance['status'] ? 'checked="checked"' : '';
 		$priority = $instance['priority'] ? 'checked="checked"' : '';
-		$spent = $instance['spent'] ? 'checked="checked"' : '';
-		$assigned = $instance['assigned'] ? 'checked="checked"' : '';
+		$time = $instance['time'] ? 'checked="checked"' : '';
 
         ?>
         
@@ -49,9 +46,7 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
 			<br/>
 			<input class="checkbox" type="checkbox" <?php echo $priority; ?> id="<?php echo $this->get_field_id('priority'); ?>" name="<?php echo $this->get_field_name('priority'); ?>" /> <label for="<?php echo $this->get_field_id('priority'); ?>"><?php _e('Show the priority', ReallySimpleIssueTracker::HANDLE); ?></label>
 			<br/>
-			<input class="checkbox" type="checkbox" <?php echo $spent; ?> id="<?php echo $this->get_field_id('spent'); ?>" name="<?php echo $this->get_field_name('spent'); ?>" /> <label for="<?php echo $this->get_field_id('spent'); ?>"><?php _e('Show the spent time', ReallySimpleIssueTracker::HANDLE); ?></label>
-			<br/>
-			<input class="checkbox" type="checkbox" <?php echo $assigned; ?> id="<?php echo $this->get_field_id('assigned'); ?>" name="<?php echo $this->get_field_name('assigned'); ?>" /> <label for="<?php echo $this->get_field_id('assigned'); ?>"><?php _e('Show the assigned time', ReallySimpleIssueTracker::HANDLE); ?></label>
+			<input class="checkbox" type="checkbox" <?php echo $time; ?> id="<?php echo $this->get_field_id('time'); ?>" name="<?php echo $this->get_field_name('time'); ?>" /> <label for="<?php echo $this->get_field_id('time'); ?>"><?php _e('Show the time', ReallySimpleIssueTracker::HANDLE); ?></label>
 		</p>
 
 	<?php
@@ -111,12 +106,9 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
     if($priority) {echo '<li>Priority: <strong>'.$priority.'</strong></li>';}
 	endif;
 	
-	if($instance['spent'] == 'on'):
+	if($instance['time'] == 'on'):
 	$time_spent = get_post_meta($post, 'time_spent', true);
     if($time_spent) {echo '<li>Time spent: <strong>'.$time_spent.'</strong></li>';}
-	endif;
-	
-	if($instance['assigned'] == 'on'):
 	$original_estimate = get_post_meta($post, 'original_estimate', true);
     if($original_estimate) {echo '<li>Time assigned: <strong>'.$original_estimate.'</strong></li>';}
 	endif; ?>
