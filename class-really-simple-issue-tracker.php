@@ -73,51 +73,15 @@ class ReallySimpleIssueTracker {
      *
      */
     public static function addMetaBoxes(){
-        add_meta_box('assigned-to', __( 'Assigned to', self::HANDLE ), 'ReallySimpleIssueTracker::metaboxAssignedTo', 'issue','side','high');
-        add_meta_box('issue-type', __( 'Issue type', self::HANDLE ), 'ReallySimpleIssueTracker::issueType', 'issue','side','high');
-        add_meta_box('priority', __( 'Priority', self::HANDLE ), 'ReallySimpleIssueTracker::priority', 'issue','side','high');
-        add_meta_box('status', __( 'Status', self::HANDLE ), 'ReallySimpleIssueTracker::metaboxStatus', 'issue','side','high');
-        add_meta_box('time', __( 'Time', self::HANDLE ), 'ReallySimpleIssueTracker::metaboxTime', 'issue','side','high');
+        add_meta_box('details', __( 'Details', self::HANDLE ), 'ReallySimpleIssueTracker::metaboxIssueDetails', 'issue','side','high');
     }
 
-    /**
+	/**
      * @static
      *
      */
-    public static function metaboxAssignedTo(){
-        require_once 'templates/meta-box-assigned-to.php';
-    }
-
-    /**
-     * @static
-     *
-     */
-    public static function metaboxStatus(){
-        require_once 'templates/meta-box-status.php';
-    }
-
-    /**
-     * @static
-     *
-     */
-    public static function metaboxTime(){
-        require_once 'templates/meta-box-time.php';
-    }
-
-    /**
-     * @static
-     *
-     */
-    public static function issueType(){
-        require_once 'templates/meta-box-issue-type.php';
-    }
-
-    /**
-     * @static
-     *
-     */
-    public static function priority(){
-        require_once 'templates/meta-box-priority.php';
+    public static function metaboxIssueDetails(){
+        require_once 'meta-box-issue-details.php';
     }
 
     /**

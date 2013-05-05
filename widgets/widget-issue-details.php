@@ -62,11 +62,11 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
          * @var string $after_title
          */
 	extract($args);
-
+	
 	if(is_singular('issue') ):
 
 	echo $before_widget;
-
+	
 	if(strlen($instance['title']) > 0): ?>
         <div class="widget-title"><?php echo $instance['title'] ?></div>
     <?php endif; ?>
@@ -119,6 +119,14 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
     if($time_spent) {echo '<li>Time spent: <strong>'.$time_spent.'</strong></li>';}
 	$original_estimate = get_post_meta($post, 'original_estimate', true);
     if($original_estimate) {echo '<li>Time assigned: <strong>'.$original_estimate.'</strong></li>';}
+    
+    if($original_estimate && $time_spent) {
+    $original_estimate_minutes = ReallySimpleIssueTracker::convertEstimatedTimeStringToMinutes($original_estimate);
+	$time_remaining = $original_estimate_minutes - ReallySimpleIssueTracker::convertEstimatedTimeStringToMinutes($time_spent);
+	$time_remaining = $time_remaining < 0 ? 0 : $time_remaining;
+	$time_remaining = ReallySimpleIssueTracker::convertMinutesToEstimatedTimeString($time_remaining);
+	echo '<li>Time left: <strong>'.$time_remaining.'</strong></li>';}
+
 	endif; ?>
 	
 	</ul>
