@@ -43,7 +43,7 @@ class ReallySimpleIssueTracker {
             'has_archive' => true,
             'hierarchical' => false,
             'menu_position' => null,
-            'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'comments', 'category' )
+            'supports' => array( 'title', 'editor', 'author', 'comments', 'category' )
         );
         register_post_type('issue', $args);
 
@@ -61,7 +61,7 @@ class ReallySimpleIssueTracker {
             'new_item_name' => __( 'New Project Name', self::HANDLE ),
             'menu_name' => __( 'Projects', self::HANDLE ),
         );
-        register_taxonomy( 'project', 'issue', array( 'hierarchical' => true, 'labels' => $labels, 'query_var' => 'project' ) );
+        register_taxonomy( 'project', 'issue', array( 'hierarchical' => true, 'show_admin_column' => true, 'labels' => $labels, 'query_var' => 'project' ) );
     }
 
     public static function registerTextDomain(){
