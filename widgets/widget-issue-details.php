@@ -110,7 +110,7 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
                 if($type->getPriorityById($priority))
             	$priority_type = $type;
     			}
-            	echo '<li>Type: <strong>'.$priority_type->getName().'</strong></li>';
+            	echo '<li>Priority: <strong>'.$priority_type->getName().'</strong></li>';
             }
 	endif;
 	
