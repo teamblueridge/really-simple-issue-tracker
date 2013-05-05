@@ -14,6 +14,7 @@ function issue_table() {
 	$post = get_the_ID();
     echo '<tr><td>';
     echo get_the_date();
+
     $issue = get_post_meta($post, 'issue_type', true);
     $issue_types = ReallySimpleIssueTracker_IssueType::getDefaultIssueTypes();
 	if($issue) {
@@ -22,8 +23,9 @@ function issue_table() {
                 if($type->getIssueTypeById($issue))
             	$issue_type = $type;
     			}
-            	echo '<td class="'.$issue_type->getId().'">'.$issue_type->getName().'</td>';
+            	echo '<td>'.$issue_type->getName().'</td>';
             }
+
     $status = get_post_meta($post,'issue_status', true);
     $status_types = ReallySimpleIssueTracker_Status::getDefaultStatusTypes();
         if($status) {
@@ -41,12 +43,21 @@ function issue_table() {
     echo '</td><td>';
     the_taxonomies(array('template' => '<div style="display:none;">%s</div> %l')); 
 	echo '</td><td>';
+
     $assigned = get_user_meta(get_post_meta($post, 'assigned_to', true), 'nickname', true);
     	if($assigned) {echo $assigned;}
     	else {echo __('Unassigned',ReallySimpleIssueTracker::HANDLE);}
-    echo '</td><td>';
-    $priority = get_post_meta($post, 'priority', true);
-    	if($priority) {echo $priority;}
+
+	$priority = get_post_meta($post, 'priority', true);
+    $priority_types = ReallySimpleIssueTracker_Priority::getDefaultPriorities();
+	if($priority) {
+		$priority_type = object;
+            foreach($priority_types as $type) {
+                if($type->getPriorityById($priority))
+            	$priority_type = $type;
+    			}
+            	echo '</td><td>'.$priority_type->getName().'';
+            }
     echo '</td><td>';
     $time_spent = get_post_meta($post, 'time_spent', true);
     	if($time_spent) {echo $time_spent;}

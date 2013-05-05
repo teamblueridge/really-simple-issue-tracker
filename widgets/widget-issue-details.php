@@ -103,7 +103,15 @@ class ReallySimpleIssueTracker_DetailsWidget extends WP_Widget {
 	
 	if($instance['priority'] == 'on'):
 	$priority = get_post_meta($post, 'priority', true);
-    if($priority) {echo '<li>Priority: <strong>'.$priority.'</strong></li>';}
+    $priority_types = ReallySimpleIssueTracker_Priority::getDefaultPriorities();
+	if($priority) {
+		$priority_type = object;
+            foreach($priority_types as $type) {
+                if($type->getPriorityById($priority))
+            	$priority_type = $type;
+    			}
+            	echo '<li>Type: <strong>'.$priority_type->getName().'</strong></li>';
+            }
 	endif;
 	
 	if($instance['time'] == 'on'):
