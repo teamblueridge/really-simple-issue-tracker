@@ -1,6 +1,6 @@
 <?php
 function issue_table_style() {
-	wp_enqueue_style('really-simple-issue-tracker-table-style', plugin_dir_url(__FILE__).'css/issue-table.css');
+	wp_enqueue_style('really-simple-issue-tracker-table-style', plugin_dir_url(__FILE__).'issue-table.css');
 }
 add_action('wp_enqueue_scripts', 'issue_table_style');
 
@@ -70,5 +70,5 @@ function issue_table() {
 	echo '</tbody></table>';
 	wp_reset_query(); 
 }
-add_shortcode('really-simple-issue-tracker', 'issue_table');
+add_shortcode('issue-table', 'issue_table');
 ?>
