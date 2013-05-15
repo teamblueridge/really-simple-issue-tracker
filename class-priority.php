@@ -18,12 +18,12 @@ class ReallySimpleIssueTracker_Priority {
      */
     public static function getDefaultPriorities(){
 
-        $urgent = new self('urgent',__('Urgent',ReallySimpleIssueTracker::HANDLE),'');
-        $high = new self('high',__('High',ReallySimpleIssueTracker::HANDLE),'');
-        $medium = new self('medium',__('Medium',ReallySimpleIssueTracker::HANDLE),'');
         $low = new self('low',__('Low',ReallySimpleIssueTracker::HANDLE),'');
+        $medium = new self('medium',__('Medium',ReallySimpleIssueTracker::HANDLE),'');
+        $high = new self('high',__('High',ReallySimpleIssueTracker::HANDLE),'');
+        $urgent = new self('urgent',__('Urgent',ReallySimpleIssueTracker::HANDLE),'');
 
-        return array($urgent, $high, $medium, $low);
+        return array($low, $medium, $high, $urgent);
     }
 
     public function setDescription($description) {
