@@ -1,10 +1,10 @@
 <?php
 /**
- Plugin Name: Really Simple Issue Tracker
- Description: Let's you setup and keep track of simple tasks or issues to be done, connect them with a project and optionally list them publicly in a widget.
- Author: Andreas Lundgren
- Author e-mail: aaslun04@gmail.com
- Version: 1.0
+ Plugin Name: Very Simple Issue Tracker
+ Description: Keep track of issues to be done, connect them with a project and list them publicly in a widget and/or table. Allow anonymous users to post issues with a shortcode.
+ Author: Hendrik Boone
+ Author URI: https://teamblueridge.org
+ Version: 1.2
  */
 
 require_once 'class-really-simple-issue-tracker.php';
