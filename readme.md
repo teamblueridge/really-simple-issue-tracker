@@ -11,10 +11,10 @@ One can display a list of issues. The other one is used on single issue pages an
 - Find the just downloaded zip and let it install. Activate the plugin and you will now find a new tab at the left of your admin page.
 
 #Changelog
-*# Initial clone
-*# Issue table, code cleanup and more
-**# Issue details widget	
-*# Anonymous issue reporting
+1. Initial clone
+	1. Issue table, code cleanup and more
+		1. Issue details widget	
+	2. Anonymous issue reporting
 
 #Remarks
 - The table is limited to 20 entries by now. Fixing this is on my to-do list.
