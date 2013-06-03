@@ -123,11 +123,9 @@ class ReallySimpleIssueTracker_ListWidget extends WP_Widget {
                 <?php endwhile; ?>
         </ul>
         <?php else : ?>
-            <li>
-                <strong>
-                    <?php _e('No issues found! Create some issues or adjust your widget settings. :-)', ReallySimpleIssueTracker::HANDLE); ?>
-                </strong>
-            </li>
+            <p>
+                    <?php _e('List empty', ReallySimpleIssueTracker::HANDLE); ?>
+            </p>
             <?php
         endif;
         wp_reset_query();

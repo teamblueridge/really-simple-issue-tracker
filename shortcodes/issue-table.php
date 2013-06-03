@@ -1,12 +1,14 @@
 <?php
 
+// http://wp.tutsplus.com/tutorials/plugins/a-guide-to-wordpress-custom-post-types-creation-display-and-meta-boxes/
+// Shortcode wegdoen en templates creëren in de plaats.
 function issue_table_style() {wp_register_style('issue-table-style', plugin_dir_url(__FILE__).'issue-table.css');}
 add_action('wp_enqueue_scripts', 'issue_table_style');
 
 function issue_table() { 
 	wp_enqueue_style('issue-table-style');
 
-	$querystring = 'post_type="issue"&showposts=20';
+	$querystring = 'post_type="issue"&showposts=30';
 	
 	echo '<table id="issue-table"><thead><tr><th>Date</th><th>Type</th><th>Status</th><th>Title</th><th>Project</th><th>For</th><th>Priority</th><th>Spent</th><th>Assigned</th></tr></thead>';
 	echo '<tbody>';

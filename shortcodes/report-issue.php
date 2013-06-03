@@ -1,7 +1,16 @@
 <?php
-function report_issue() {
 $AnonUserName = 'Anonymous'; // name of anonymous user
-$PostStatus = 'publish'; // 'publish' or 'draft'
+$PostStatus = 'draft'; // 'publish' or 'draft'
+
+function report_issue_style() {wp_register_style('report-issue-style', plugin_dir_url(__FILE__).'report-issue.css');}
+add_action('wp_enqueue_scripts', 'report_issue_style');
+
+function report_issue() {
+
+wp_enqueue_style('report-issue-style');
+
+global $AnonUserName;
+global $PostStatus;
 
 if($_POST) {
 
@@ -17,12 +26,16 @@ $my_issue = array(
 			'comment_status' => 'open',
        	);
 
-		$PostID = wp_insert_post($my_issue);
+if (empty ($_POST['URL'])) {$PostID = wp_insert_post($my_issue);
 
 update_post_meta($PostID, 'issue_status', 'open');
 
-echo 'issue added';
-// Add link to newly created issue. Issue details should have a link back to the table.
+//later we add a link back to the issue table, impossible now because no template yet
+
+if ($PostStatus == 'publish') {echo 'You can follow the issue status<a href="'.get_permalink($PostID).'">here</a>.';}
+else {echo 'Moderation in progress, issue will be added soon.';}
+}
+
 }
 else {
 
@@ -53,14 +66,12 @@ $saved_priority = get_post_meta($post->ID, 'priority', true);
     </select>
     <?php wp_nonce_field('nonce_priority','nonce_priority') ?>
 </p>
-<p class="commen-form-author"><input type="text" name="Title" placeholder="Issue title" size="30"></p>
-
+<p class="comment-form-author"><input type="text" name="Title" placeholder="Issue title" size="30"></p>
+<p class="comment-form-url"><input type="text" name="URL" placeholder="URL" size="30"></p>
 <p class="comment-form-comment"><textarea name="Message" cols="45" rows="8" placeholder="Issue content"></textarea></p>
-
 <input type="submit" name="submit" value="Submit"></form></div>
 
 <?php
-// add url input field for spam reporting. then cleaning it up with if else ...
 // add an email input field to allow issue notifications by mail. Integrate that in the settings.
 
 }
